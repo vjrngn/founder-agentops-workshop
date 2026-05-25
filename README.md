@@ -25,6 +25,31 @@ Requires Node 18+ (developed on Node 22).
 
 ---
 
+## Deploy (GitHub Pages)
+
+The site is live at **https://vjrngn.github.io/founder-agentops-workshop/**.
+
+Pages is configured to serve the `gh-pages` branch. To build and publish a new
+version:
+
+```bash
+pnpm deploy
+```
+
+This runs `scripts/deploy-pages.sh`, which builds `dist/` and force-pushes it to
+`gh-pages` (no GitHub Actions required). `vite.config.ts` uses `base: "./"` so
+the build works under the `/founder-agentops-workshop/` subpath.
+
+> A GitHub Actions workflow would be the more automated option (deploy on every
+> push to `main`), but this account's Actions are currently billing-locked.
+> Once that's resolved, an Actions-based workflow can replace the manual script.
+
+When you point the site at **techswamy.com** instead, the relative `base` means
+no rebuild config change is needed — just set up the custom domain in the repo's
+Pages settings.
+
+---
+
 ## Updating the LinkedIn event URL (when registration opens)
 
 There is **one place** to change. Open `src/content.ts` and set:
