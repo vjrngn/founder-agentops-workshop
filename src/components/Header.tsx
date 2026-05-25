@@ -73,7 +73,8 @@ export default function Header() {
 
         <RegisterCta
           variant="primary"
-          label="Notify me"
+          label="Register"
+          comingSoonLabel="Coming soon"
           className="!px-4 !py-2 text-[13px]"
         />
       </div>

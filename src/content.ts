@@ -3,11 +3,11 @@
  * component markup.
  *
  * ─────────────────────────────────────────────────────────────────────────────
- *  UPDATING THE LINKEDIN EVENT URL (when registration opens)
+ *  TURNING ON REGISTRATION (when the event page is ready)
  * ─────────────────────────────────────────────────────────────────────────────
- *  Set `cta.linkedInEventUrl` below to the live LinkedIn event URL.
- *  Every CTA button automatically switches from the "Notify Me" mailto flow to a
- *  "Register on LinkedIn" link, and the "Coming Soon" badges read as live.
+ *  Set `cta.registrationUrl` below to the live Luma or LinkedIn event URL.
+ *  Every CTA automatically switches from a disabled "coming soon" state to a
+ *  live "Register Now" link, and the "Coming Soon" badges read as live.
  *  Nothing else needs to change.
  */
 
@@ -17,12 +17,10 @@ export const links = {
 } as const;
 
 export const cta = {
-  /** Leave empty until the LinkedIn event page is live, then paste the URL here. */
-  linkedInEventUrl: "",
-  notifyEmail: "redacted@example.com",
-  notifySubject: "Founder AgentOps Workshop",
-  notifyBody:
-    "Hi Vijay, I'm interested in the Founder AgentOps workshop. Please notify me when registration opens.",
+  /** Paste the live Luma or LinkedIn event URL here when ready. Empty = coming soon. */
+  registrationUrl: "",
+  registerLabel: "Register Now",
+  comingSoonLabel: "Registration Page Coming Soon",
 } as const;
 
 export const hero = {
@@ -205,7 +203,7 @@ export const techSwamy = {
 export const finalCta = {
   title: "Want to work better with AI agents?",
   body: "Join the upcoming online workshop and learn a practical workflow for turning ideas into specs, specs into issues, and issues into focused AI-assisted product work.",
-  note: "Registration link will be added once the LinkedIn event page is live.",
+  note: "Registration opens soon on Luma / LinkedIn — follow Vijay for the announcement.",
   secondaryLabel: "Follow Vijay on LinkedIn for updates",
 } as const;
 

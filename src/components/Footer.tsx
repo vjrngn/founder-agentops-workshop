@@ -1,4 +1,4 @@
-import { footer, links } from "../content";
+import { cta, footer, links } from "../content";
 import { isLive } from "./ui";
 
 export default function Footer() {
@@ -37,16 +37,16 @@ export default function Footer() {
             </a>
             {live ? (
               <a
-                href={links.linkedin}
+                href={cta.registrationUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-ink-soft transition-colors hover:text-ink"
               >
-                LinkedIn Event
+                Event registration
               </a>
             ) : (
               <span className="inline-flex items-center gap-2 text-ink-faint">
-                LinkedIn Event
+                Event registration
                 <span className="font-mono text-[11px] uppercase tracking-[0.14em]">
                   Coming soon
                 </span>

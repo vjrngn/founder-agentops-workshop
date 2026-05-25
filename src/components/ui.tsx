@@ -234,49 +234,82 @@ export function ComingSoonBadge({
 /*  CTA — single source of truth for the "coming soon" behaviour       */
 /* ------------------------------------------------------------------ */
 export function isLive(): boolean {
-  return ctaConfig.linkedInEventUrl.trim().length > 0;
-}
-
-function notifyHref(): string {
-  const subject = encodeURIComponent(ctaConfig.notifySubject);
-  const body = encodeURIComponent(ctaConfig.notifyBody);
-  return `mailto:${ctaConfig.notifyEmail}?subject=${subject}&body=${body}`;
+  return ctaConfig.registrationUrl.trim().length > 0;
 }
 
 type CtaVariant = "primary" | "secondary";
 
 /**
  * Renders the primary registration call to action.
- * - Until `cta.linkedInEventUrl` is set, links to a pre-filled "notify me" email.
- * - Once set, links straight to the LinkedIn event page (new tab).
+ * - Until `cta.registrationUrl` is set, shows a clear, disabled "coming soon" button.
+ * - Once set, links straight to the Luma / LinkedIn event page (new tab).
  */
 export function RegisterCta({
   variant = "primary",
   className = "",
   label,
+  comingSoonLabel,
   onDark = false,
 }: {
   variant?: CtaVariant;
   className?: string;
   label?: string;
+  comingSoonLabel?: string;
   onDark?: boolean;
 }) {
-  const live = isLive();
-  const href = live ? ctaConfig.linkedInEventUrl : notifyHref();
-  const text =
-    label ?? (live ? "Register on LinkedIn" : "Notify Me When Registration Opens");
+  if (!isLive()) {
+    return (
+      <DisabledCta variant={variant} onDark={onDark} className={className}>
+        {comingSoonLabel ?? ctaConfig.comingSoonLabel}
+      </DisabledCta>
+    );
+  }
 
   return (
     <ButtonLink
-      href={href}
+      href={ctaConfig.registrationUrl}
       variant={variant}
-      external={live}
+      external
       onDark={onDark}
       className={className}
     >
-      {text}
+      {label ?? ctaConfig.registerLabel}
       <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5" />
     </ButtonLink>
+  );
+}
+
+/** Non-interactive "coming soon" state for the registration CTA. */
+function DisabledCta({
+  children,
+  variant = "primary",
+  onDark = false,
+  className = "",
+}: {
+  children: ReactNode;
+  variant?: CtaVariant;
+  onDark?: boolean;
+  className?: string;
+}) {
+  const base =
+    "inline-flex cursor-not-allowed select-none items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium tracking-tight";
+  const tone = onDark
+    ? "border border-paper/15 bg-paper/5 text-paper/55"
+    : variant === "primary"
+      ? "border border-line-strong bg-ink/[0.06] text-ink/45"
+      : "border border-line bg-paper-2 text-ink-faint";
+  return (
+    <button
+      type="button"
+      disabled
+      aria-disabled="true"
+      className={`${base} ${tone} ${className}`}
+    >
+      <span className="relative flex h-1.5 w-1.5" aria-hidden="true">
+        <span className="pulse-dot absolute inline-flex h-full w-full rounded-full bg-accent/70" />
+      </span>
+      {children}
+    </button>
   );
 }
 

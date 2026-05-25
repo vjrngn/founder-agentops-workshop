@@ -50,25 +50,26 @@ Pages settings.
 
 ---
 
-## Updating the LinkedIn event URL (when registration opens)
+## Turning on registration (when the event page is ready)
 
-There is **one place** to change. Open `src/content.ts` and set:
+There is **one place** to change. Open `src/content.ts` and paste the live Luma
+or LinkedIn event URL:
 
 ```ts
 export const cta = {
-  linkedInEventUrl: "https://www.linkedin.com/events/XXXXXXXXXXXX", // ← paste here
+  registrationUrl: "https://lu.ma/your-event", // ← paste here (Luma or LinkedIn)
   ...
 };
 ```
 
 When that string is non-empty, every CTA across the page automatically:
 
-- switches from the pre-filled **"Notify Me When Registration Opens"** email
-  flow to a **"Register on LinkedIn"** link (opens in a new tab),
+- switches from a disabled **"Registration Page Coming Soon"** button to a live
+  **"Register Now"** link (opens in a new tab),
 - updates the "Coming soon" badges to read **"Registration open"**,
-- turns the footer "LinkedIn Event — Coming soon" item into a live link.
+- turns the footer "Event registration — Coming soon" item into a live link.
 
-No component changes are needed.
+No component changes are needed. After editing, run `pnpm deploy` to publish.
 
 ---
 
