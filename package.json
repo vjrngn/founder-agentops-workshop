@@ -1,0 +1,29 @@
+{
+  "name": "founder-agentops-workshop",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Landing page for the 'From Vibe Coding to Founder AgentOps' online workshop by Tech Swamy.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b --noEmit false --emitDeclarationOnly false"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.9",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "tailwindcss": "^4.0.9",
+    "typescript": "^5.6.3",
+    "vite": "^6.0.7"
+  }
+}

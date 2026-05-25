@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/*  Design tokens — "engineer's notebook": warm paper, ink, terracotta */
+/* ------------------------------------------------------------------ */
+@theme {
+  --color-paper: #fbfaf7;
+  --color-paper-2: #f4f2ec;
+  --color-paper-3: #efece3;
+  --color-ink: #16130d;
+  --color-ink-soft: #4f4a40;
+  --color-ink-faint: #8b8478;
+  --color-line: #1613150f; /* ~6% ink, for hairline borders */
+  --color-line-strong: #16131521;
+  --color-accent: #be4a24;
+  --color-accent-ink: #9c3a18;
+  --color-accent-soft: #f4e7df;
+
+  --font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Base                                                               */
+/* ------------------------------------------------------------------ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: #fff;
+  }
+
+  /* keep anchored sections clear of the sticky header */
+  section[id] {
+    scroll-margin-top: 6rem;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Atmosphere — blueprint grid + soft accent glow                     */
+/* ------------------------------------------------------------------ */
+.grid-bg {
+  background-image:
+    linear-gradient(to right, var(--color-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--color-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.grid-fade {
+  -webkit-mask-image: radial-gradient(
+    120% 80% at 50% 0%,
+    #000 0%,
+    transparent 75%
+  );
+  mask-image: radial-gradient(120% 80% at 50% 0%, #000 0%, transparent 75%);
+}
+
+.glow-accent {
+  background: radial-gradient(
+    closest-side,
+    color-mix(in oklab, var(--color-accent) 22%, transparent),
+    transparent
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/*  Motion — entrance reveals (respecting reduced-motion)              */
+/* ------------------------------------------------------------------ */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise {
+  animation: rise 0.85s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.82);
+  }
+}
+.pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal,
+  .rise {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+  .pulse-dot {
+    animation: none !important;
+  }
+}

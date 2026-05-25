@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="From Vibe Coding to Founder AgentOps">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbfaf7" />
+      <stop offset="1" stop-color="#f1eee6" />
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#16130d" stroke-opacity="0.05" stroke-width="1" />
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <rect width="1200" height="630" fill="url(#grid)" />
+  <circle cx="1040" cy="120" r="240" fill="#be4a24" opacity="0.08" />
+
+  <text x="80" y="150" font-family="'Geist Mono', monospace" font-size="22" letter-spacing="4" fill="#be4a24">ONLINE WORKSHOP · TECH SWAMY</text>
+
+  <text x="78" y="300" font-family="'Geist', sans-serif" font-weight="700" font-size="92" fill="#16130d">From Vibe Coding</text>
+  <text x="78" y="400" font-family="'Geist', sans-serif" font-weight="700" font-size="92" fill="#16130d">to <tspan fill="#be4a24">Founder AgentOps</tspan></text>
+
+  <text x="80" y="478" font-family="'Geist', sans-serif" font-size="30" fill="#4f4a40">Give your AI coding agents better work — specs, issues, context, review.</text>
+
+  <g font-family="'Geist Mono', monospace" font-size="22" fill="#16130d">
+    <rect x="80" y="520" width="150" height="48" rx="24" fill="none" stroke="#16130d" stroke-opacity="0.15" />
+    <text x="104" y="551">Claude Code</text>
+    <rect x="246" y="520" width="92" height="48" rx="24" fill="none" stroke="#16130d" stroke-opacity="0.15" />
+    <text x="270" y="551">Codex</text>
+    <rect x="354" y="520" width="108" height="48" rx="24" fill="none" stroke="#16130d" stroke-opacity="0.15" />
+    <text x="378" y="551">Gemini</text>
+    <rect x="478" y="520" width="104" height="48" rx="24" fill="none" stroke="#16130d" stroke-opacity="0.15" />
+    <text x="502" y="551">Cursor</text>
+    <rect x="598" y="520" width="104" height="48" rx="24" fill="none" stroke="#16130d" stroke-opacity="0.15" />
+    <text x="622" y="551">Linear</text>
+  </g>
+
+  <text x="1120" y="600" text-anchor="end" font-family="'Geist', sans-serif" font-size="24" fill="#4f4a40">Hosted by Vijay Rangan</text>
+</svg>
