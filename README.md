@@ -33,7 +33,7 @@ Pages is configured to serve the `gh-pages` branch. To build and publish a new
 version:
 
 ```bash
-pnpm deploy
+pnpm deploy:pages
 ```
 
 This runs `scripts/deploy-pages.sh`, which builds `dist/` and force-pushes it to
@@ -69,7 +69,7 @@ When that string is non-empty, every CTA across the page automatically:
 - updates the "Coming soon" badges to read **"Registration open"**,
 - turns the footer "Event registration — Coming soon" item into a live link.
 
-No component changes are needed. After editing, run `pnpm deploy` to publish.
+No component changes are needed. After editing, run `pnpm deploy:pages` to publish.
 
 ---
 
