@@ -15,6 +15,9 @@ echo "[deploy] Building production bundle..."
 pnpm build
 
 REMOTE="$(git remote get-url origin)"
+# Use this repo's configured identity (not the global one) for the deploy commit.
+NAME="$(git config user.name)"
+EMAIL="$(git config user.email)"
 TMP="$(mktemp -d)"
 
 echo "[deploy] Staging dist/ on an orphan gh-pages branch..."
@@ -25,7 +28,8 @@ pushd "${TMP}" >/dev/null
 git init -q
 git checkout -q -b gh-pages
 git add -A
-git commit -q -m "Deploy to GitHub Pages ($(date -u +%Y-%m-%dT%H:%MZ))"
+git -c user.name="${NAME}" -c user.email="${EMAIL}" \
+  commit -q -m "Deploy to GitHub Pages ($(date -u +%Y-%m-%dT%H:%MZ))"
 echo "[deploy] Force-pushing gh-pages to ${REMOTE} ..."
 git push -q -f "${REMOTE}" gh-pages
 popd >/dev/null
